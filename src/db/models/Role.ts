@@ -12,7 +12,7 @@ interface RoleAttributes {
 export interface RoleInput extends Optional<RoleAttributes, 'id'> {}
 export interface RoleOutput extends Required<RoleAttributes> {}
 
-class Role extends Model<RoleAttributes, RoleInput> implements RoleAttributes {
+class Roles extends Model<RoleAttributes, RoleInput> implements RoleAttributes {
     public id!: number;
     public roleName!: string | null;
     public active!: boolean | null;
@@ -20,7 +20,7 @@ class Role extends Model<RoleAttributes, RoleInput> implements RoleAttributes {
     public readonly updatedAt!: Date;
 }
 
-Role.init(
+Roles.init(
     {
         id: {
           allowNull: false,
@@ -29,17 +29,28 @@ Role.init(
           type: DataTypes.BIGINT,
         },
         roleName: {
+          field: "roleName",
           allowNull: true,
           type: DataTypes.STRING,
         },
         active: {
+          field: "active",
           allowNull: true,
           type: DataTypes.BOOLEAN,
+        },
+        createdAt: {
+          field: "createdAt",
+          allowNull: true,
+          type: DataTypes.DATE,
+        },
+        updatedAt: {
+          field: "updatedAt",
+          allowNull: true,
+          type: DataTypes.DATE,
         }
     }, {
       sequelize: connection,
       underscored: true,
-      timestamps: true,
     })
 
-export default Role;
+export default Roles;
