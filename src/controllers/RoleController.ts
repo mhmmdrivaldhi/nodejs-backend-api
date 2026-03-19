@@ -53,7 +53,8 @@ export const getRoleById = async(req: Request, res: Response): Promise<void> => 
                 errors: error
             });
             return;
-        }        res.status(500).send({
+        }   
+        res.status(500).send({
             message: "Interal server error",
             errors: error
         })
